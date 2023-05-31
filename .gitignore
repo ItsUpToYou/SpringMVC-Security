@@ -13,8 +13,9 @@ out/
 mvnw*
 !**/src/main/**/out/
 !**/src/test/**/out/
-
- 
+HELP.md
+target/
+.mvn
 
  
 
