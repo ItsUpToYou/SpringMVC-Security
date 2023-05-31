@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Spring MVC Security</title>
+</head>
+<body>
+<h2>Home page</h2>
+<hr>
+<p>Welcome to the Demo Home Page </p>
+
+<hr>
+
+<!--  Display Username and Roles-->
+<p>
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
+
+<div sec:authorize="hasRole('MANAGER')">
+<!--  Add a link to poing to /leaders .... this is for the managers -->
+  <p>
+      <a th:href="@{/leaders}">Leadership Meeting</a>
+      (Only for manager peeps)
+  </p>
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+<!-- Add a link to poit to /systems ... this is for the admins -->
+<p>
+    <a th:href="@{/systems}">IT System Meeting</a>
+    (Only for ADMIN peeps)
+</p>
+</div>
+<hr>
+
+<!--  Add LogOut Button-->
+<form action="#" th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>
